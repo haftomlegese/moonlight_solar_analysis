@@ -1,0 +1,13 @@
+*.pyc            
+__pycache__/   
+myenv/          
+
+.vscode/      
+
+lib/
+lib64/
+include/
+bin/
+pip-selfcheck.json
+
+.DS_Store     
