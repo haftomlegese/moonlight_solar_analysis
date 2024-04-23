@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+
 
 def check_missing_values(df):
     """
@@ -69,18 +71,19 @@ def perform_data_quality_checks(file_path):
     """
     # Load data from CSV file into DataFrame
     df = pd.read_csv(file_path)
-
+    file_name = os.path.basename(file_path)
+    
     # Data Quality Checks
     missing_values = check_missing_values(df)
     if missing_values:
-        print(f"Missing Values in '{file_path}':")
+        print(f"Missing Values in '{file_name}':")
         print(missing_values)
         print()
         return False
 
     outlier_counts = detect_outliers(df, ['GHI', 'DNI', 'DHI'])
     if outlier_counts:
-        print(f"Outliers in '{file_path}':")
+        print(f"Outliers in '{file_name}':")
         print(outlier_counts)
         print()
         return False
@@ -89,7 +92,7 @@ def perform_data_quality_checks(file_path):
     negative_value_condition = lambda x: x < 0
     incorrect_entries = check_incorrect_entries(df, ['GHI', 'DNI', 'DHI'], negative_value_condition)
     if incorrect_entries:
-        print(f"Incorrect Entries (Negative Values) in '{file_path}':")
+        print(f"Incorrect Entries (Negative Values) in '{file_name}':")
         print(incorrect_entries)
         print()
         return False
