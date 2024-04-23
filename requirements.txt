@@ -10,7 +10,7 @@ coverage>=6.3.2
 
 # Continuous Integration (CI)
 pytest-cov>=3.0.0
-codecov>=3.0.0
+codecov==2.1.13
 
 # Additional Utilities
 scikit-learn>=1.0.2
