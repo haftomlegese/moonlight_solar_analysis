@@ -4,13 +4,13 @@ import plotly.express as px
 
 # Load data functions (assuming data is stored locally)
 def load_benin_data():
-    return pd.read_csv('../data/benin-malanville.csv')
+    return pd.read_csv('data/benin-malanville.csv')
 
 def load_sierra_leone_data():
-    return pd.read_csv('../data/sierraleone-bumbuna.csv')
+    return pd.read_csv('data/sierraleone-bumbuna.csv')
 
 def load_togo_data():
-    return pd.read_csv('../data/togo-dapaong_qc.csv')
+    return pd.read_csv('data/togo-dapaong_qc.csv')
 
 
 # Title and description
