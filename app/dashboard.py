@@ -4,13 +4,13 @@ import plotly.express as px
 
 # Load data functions (assuming data is stored locally)
 def load_benin_data():
-    return pd.read_csv('data/benin-malanville.csv')
+    return pd.read_csv('data/benin-malanville.csv', low_memory=False)
 
 def load_sierra_leone_data():
-    return pd.read_csv('data/sierraleone-bumbuna.csv')
+    return pd.read_csv('data/sierraleone-bumbuna.csv', low_memory=False)
 
 def load_togo_data():
-    return pd.read_csv('data/togo-dapaong_qc.csv')
+    return pd.read_csv('data/togo-dapaong_qc.csv', low_memory=False)
 
 
 # Title and description
@@ -41,7 +41,7 @@ if st.button('Show Full Dataset'):
 
 # Handle missing values (consider vectorized operations)
 def fill_missing_values(df):
-  return df.fillna(df.mean())
+  return df.fillna({'Comments': 'Missing'})
 
 selected_df = fill_missing_values(selected_df.copy())
 
