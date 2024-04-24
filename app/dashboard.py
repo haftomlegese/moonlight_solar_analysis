@@ -84,3 +84,23 @@ st.plotly_chart(fig2)
 # Box plot: Solar Radiation (GHI, DNI, DHI)
 fig3 = px.box(cleaned_df, y=['GHI', 'DNI', 'DHI'], title='Box Plot: Solar Radiation (GHI, DNI, DHI)')
 st.plotly_chart(fig3)
+
+# Time Series Analysis: solar radiation components (GHI, DNI, DHI) and temperature (Tamb) 
+fig_time_series = px.line(cleaned_df, x='Timestamp', y=['GHI', 'DNI', 'DHI', 'Tamb'],
+                          title='Time Series Analysis: Solar Radiation and Temperature Over Time')
+st.plotly_chart(fig_time_series)
+
+# Correlation Heatmap
+numeric_columns = cleaned_df.select_dtypes(include='number').columns.tolist()
+corr_matrix = cleaned_df[numeric_columns].corr()
+fig_corr_heatmap = px.imshow(corr_matrix, title='Correlation Heatmap')
+st.plotly_chart(fig_corr_heatmap)
+
+#Wind Analysis: Explore wind speed and direction 
+fig_wind_polar = px.scatter_polar(cleaned_df, r='WS', theta='WD', title='Wind Analysis: Wind Speed and Direction')
+st.plotly_chart(fig_wind_polar)
+
+#Temperature Analysis: Compare module temperatures (TModA, TModB) with ambient temperature (Tamb) 
+fig_temp_comparison = px.scatter(cleaned_df, x='Tamb', y=['TModA', 'TModB'],
+                                 title='Temperature Analysis: Module vs. Ambient Temperature')
+st.plotly_chart(fig_temp_comparison)
