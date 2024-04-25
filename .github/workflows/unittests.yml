@@ -3,23 +3,27 @@ name: Unit Tests
 on:
   push:
     branches:
-      - main  # Trigger workflow on push to the main branch
-      - development  # Optionally trigger on other branches
+      - main
+      - development
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use Ubuntu environment for running tests
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2  # Checkout the repository's code
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v2  # Set up Python environment
-
-      # Define Python version (adjust as needed)
+      uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+
+    - name: Create virtual environment
+      run: python -m venv venv
+          
+    - name: Activate virtual environment
+      run: source venv/bin/activate
 
     - name: Install dependencies
       run: |
@@ -28,4 +32,4 @@ jobs:
 
     - name: Run unit tests
       run: |
-        python -m unittest discover -s tests -p 'test_*.py'
+        pytest tests
